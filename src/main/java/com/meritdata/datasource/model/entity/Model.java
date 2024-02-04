@@ -85,7 +85,7 @@ public class Model {
     /**
      * 模型状态--版本状态
      */
-    private ModelVersionStatusEnum status;
+    private ModelVersionStatus status;
     /**
      * 编辑状态下的表名称
      */
@@ -114,4 +114,10 @@ public class Model {
      * 模型信息
      */
     private String modelInfo;
+
+    /**
+     * 级别编码，为父分类的LEVEL_CODE+自己所处层级的六位编号，如父分类为000001，
+     * 自己为父分类下的第三个子分类，则自己的LEVEL_CODE为000001000003
+     **/
+    private String levelCode;
 }

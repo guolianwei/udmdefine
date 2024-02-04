@@ -2,22 +2,22 @@ package com.meritdata.datasource.model.enums;
 
 /**
  * @PackageName: com.meritdata.datasource.model.enums
- * @ClassName: EnablingStatus
+ * @ClassName: WhetherOpenStatus
  * @Description:
  * @Author: MH
- * @Date: 2024/1/29 029 13:50
+ * @Date: 2024/1/29 029 14:38
  */
-public enum EnablingStatus {
+public enum TreeExpandState {
     /**
-     * 启用状态 0：否 1：是
+     * 启用状态 0：关闭 ,1：展开
      */
-    ENABLE(0, "新增"),
-    DEACTIVATE(1, "更新");
+    CLOSE(0, "关闭"),
+    EXPANDED(1, "展开");
 
     private final int code;
     private final String desc;
 
-    EnablingStatus(int code, String desc) {
+    TreeExpandState(int code, String desc) {
         this.code = code;
         this.desc = desc;
     }

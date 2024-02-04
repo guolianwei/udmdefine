@@ -35,11 +35,11 @@ public class DataSource {
     /**
      * 数据源密码
      */
-    private String password;
+    private String drowssap;
     /**
      * 操作的对象信息
      */
-    private Integer toSchema;
+    private String toSchema;
     /**
      * 连接信息的自定义属性
      */

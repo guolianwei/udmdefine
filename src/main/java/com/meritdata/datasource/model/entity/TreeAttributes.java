@@ -1,57 +1,42 @@
 package com.meritdata.datasource.model.entity;
 
-import com.meritdata.datasource.model.enums.EnablingStatus;
-import com.meritdata.datasource.model.enums.ExpandState;
+import com.meritdata.datasource.model.enums.TreeEnablingStatus;
+import com.meritdata.datasource.model.enums.TreeExpandState;
+import com.meritdata.datasource.model.enums.TreeGroupType;
+import com.meritdata.datasource.model.enums.WhetherValue;
 
 class TreeAttributes {
-    private ExpandState expandState;
-    private EnablingStatus remark;
+    private TreeExpandState expandState;
+    private TreeEnablingStatus status;
+
     /**
-     * 数据源id
+     * 父节点ID
+     * -1代表是跟节点
      */
-    private String id;
-    /**
-     * 数据源编码
-     */
-    private String code;
+    private String parentId;
+    private int sortNumber;
     /**
      * 数据源名称
      */
     private String name;
     /**
-     * 数据源类型
+     * 是否叶子节点
      */
-    private String type;
+    private WhetherValue leaf;
     /**
-     * 数据源地址
+     * 类型
      */
-    private String url;
-    /**
-     * 数据源用户名
-     */
-    private String username;
-    /**
-     * 数据源密码
-     */
-    private String password;
-    /**
-     * 操作的对象信息
-     */
-    private Integer toSchema;
-    /**
-     * 连接信息的自定义属性
-     */
-    private String[] udfAttrs;
+    private TreeGroupType type;
 
 
     /**
      * 是否检查
      */
-    private boolean isChecked;
+    private boolean checked;
     /**
      * 是否有权限
      */
-    private boolean isHavePermission;
+    private boolean havePermission;
     /**
      * 创建用户
      */
@@ -65,11 +50,7 @@ class TreeAttributes {
      */
     private String createDept;
     /**
-     * 等级
-     */
-    private String levelCode;
-    /**
      * 备注
      */
-
+    private String remark;
 }

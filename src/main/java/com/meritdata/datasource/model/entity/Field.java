@@ -1,6 +1,7 @@
 package com.meritdata.datasource.model.entity;
 
 import com.meritdata.datasource.model.enums.*;
+import sun.reflect.generics.tree.Tree;
 
 /**
  * @PackageName: com.meritdata.datasource.model.entity
@@ -39,10 +40,6 @@ public class Field {
      */
     private ModifyStatus modifyStatus;
     /**
-     * 启用状态 0:禁用  1:启用
-     */
-    private EnablingStatus enablingStatus;
-    /**
      * 最后一次生效的属性名称
      */
     private String publishName;
@@ -74,9 +71,21 @@ public class Field {
      * 是否唯一
      */
     private WhetherValue isUnique;
-    private Status status;
+    private FieldStatus status;
+
+    /**
+     * 枚举值：1：受无符号限制，0：没有无符号限制，其他-1
+     */
+    private SignRestriction unsigned;
+    /**
+     * 精度
+     */
+    private int definition;
+
+
     /**
      * 字段类型关联信息
      */
     private FieldDataType fieldDataType;
+
 }

@@ -3,7 +3,7 @@ package com.meritdata.datasource.model.enums;
 /**
  * 模型版本/数据版本状态枚举
  */
-public enum ModelVersionStatusEnum {
+public enum ModelVersionStatus {
     /**
      * 停用
      */
@@ -35,7 +35,7 @@ public enum ModelVersionStatusEnum {
      */
     private Integer value;
 
-    ModelVersionStatusEnum(String name, Integer value) {
+    ModelVersionStatus(String name, Integer value) {
         this.name = name;
         this.value = value;
     }
@@ -51,10 +51,10 @@ public enum ModelVersionStatusEnum {
         return this.value.equals(value);
     }
 
-    public static ModelVersionStatusEnum of(Integer value) {
+    public static ModelVersionStatus of(Integer value) {
         if (value != null) {
-            ModelVersionStatusEnum[] types = ModelVersionStatusEnum.values();
-            for (ModelVersionStatusEnum type : types) {
+            ModelVersionStatus[] types = ModelVersionStatus.values();
+            for (ModelVersionStatus type : types) {
                 if (type.value.equals(value)) {
                     return type;
                 }
