@@ -6,14 +6,14 @@ public class BaseDataSource {
     /**
      * 数据源id
      */
-    private String id;
+     String id;
     /**
      *  数据源编码
      */
-    private String code;
+     String code;
     /**
      * 数据源名称
      */
-    private String name;
+     String name;
 
 }

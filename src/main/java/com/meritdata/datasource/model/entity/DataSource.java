@@ -11,37 +11,37 @@ public class DataSource {
     /**
      * 数据源id
      */
-    private String id;
+     String id;
     /**
      *  数据源编码
      */
-    private String code;
+     String code;
     /**
      * 数据源名称
      */
-    private String name;
+     String name;
     /**
      * 数据源类型
      */
-    private String type;
+     String type;
     /**
      * 数据源地址
      */
-    private String url;
+     String url;
     /**
      * 数据源用户名
      */
-    private String username;
+     String username;
     /**
      * 数据源密码
      */
-    private String drowssap;
+     String drowssap;
     /**
      * 操作的对象信息
      */
-    private String toSchema;
+     String toSchema;
     /**
      * 连接信息的自定义属性
      */
-    private String[] udfAttrs;
+     String[] udfAttrs;
 }

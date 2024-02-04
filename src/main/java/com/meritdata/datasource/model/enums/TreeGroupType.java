@@ -5,8 +5,8 @@ public enum TreeGroupType {
     DEPT(1, "dept"),
     GROUP(2, "group");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     TreeGroupType(int code, String desc) {
         this.code = code;

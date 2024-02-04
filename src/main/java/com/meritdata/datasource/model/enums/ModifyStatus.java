@@ -14,8 +14,8 @@ public enum ModifyStatus {
     ADD(0, "新增"),
     UPDATE(1, "更新");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     ModifyStatus(int code, String desc) {
         this.code = code;

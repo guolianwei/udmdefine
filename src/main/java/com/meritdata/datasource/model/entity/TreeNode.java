@@ -11,13 +11,13 @@ public class TreeNode {
     /**
      * 节点属性
      */
-    private TreeAttributes attribute;
+     TreeAttributes attribute;
     /**
      * 基础模型
      */
-    private BaseModel baseModel;
+     BaseModel baseModel;
     /**
      * 子节点
      */
-    private TreeNode[] children;
+     TreeNode[] children;
 }

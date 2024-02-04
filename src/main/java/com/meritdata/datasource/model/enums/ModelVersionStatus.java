@@ -28,12 +28,12 @@ public enum ModelVersionStatus {
     /**
      * 枚举名称
      */
-    private String name;
+     String name;
 
     /**
      * 枚举值
      */
-    private Integer value;
+     Integer value;
 
     ModelVersionStatus(String name, Integer value) {
         this.name = name;

@@ -14,8 +14,8 @@ public enum ModelStatus {
     EDITING(0, "编辑中"),
     PUBLISHED(1, "已发布");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     ModelStatus(int code, String desc) {
         this.code = code;

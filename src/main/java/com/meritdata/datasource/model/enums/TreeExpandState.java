@@ -14,8 +14,8 @@ public enum TreeExpandState {
     CLOSE(0, "关闭"),
     EXPANDED(1, "展开");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     TreeExpandState(int code, String desc) {
         this.code = code;

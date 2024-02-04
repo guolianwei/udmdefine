@@ -6,51 +6,51 @@ import com.meritdata.datasource.model.enums.TreeGroupType;
 import com.meritdata.datasource.model.enums.WhetherValue;
 
 class TreeAttributes {
-    private TreeExpandState expandState;
-    private TreeEnablingStatus status;
+     TreeExpandState expandState;
+     TreeEnablingStatus status;
 
     /**
      * 父节点ID
      * -1代表是跟节点
      */
-    private String parentId;
-    private int sortNumber;
+     String parentId;
+     int sortNumber;
     /**
      * 数据源名称
      */
-    private String name;
+     String name;
     /**
      * 是否叶子节点
      */
-    private WhetherValue leaf;
+     WhetherValue leaf;
     /**
      * 类型
      */
-    private TreeGroupType type;
+     TreeGroupType type;
 
 
     /**
      * 是否检查
      */
-    private boolean checked;
+     boolean checked;
     /**
      * 是否有权限
      */
-    private boolean havePermission;
+     boolean havePermission;
     /**
      * 创建用户
      */
-    private String createUser;
+     String createUser;
     /**
      * 创建时间
      */
-    private String createTime;
+     String createTime;
     /**
      * 创建部门
      */
-    private String createDept;
+     String createDept;
     /**
      * 备注
      */
-    private String remark;
+     String remark;
 }

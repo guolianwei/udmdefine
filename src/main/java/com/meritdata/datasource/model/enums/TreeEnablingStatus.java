@@ -14,8 +14,8 @@ public enum TreeEnablingStatus {
     ENABLE(1, "启用"),
     DEACTIVATE(0, "停用");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     TreeEnablingStatus(int code, String desc) {
         this.code = code;

@@ -1,12 +1,12 @@
 package com.meritdata.datasource.model.enums;
 
 public enum TrietherValue {
-    NO(0, "否 | 无"),
-    YES(1, "是 | 有"),
-    NULL(-1, "未定义 | 其他");
+    NO(0, "否"),
+    YES(1, "是"),
+    NULL(-1, "未定义");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     TrietherValue(int code, String desc) {
         this.code = code;

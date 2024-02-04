@@ -13,111 +13,111 @@ public class Model {
     /**
      * 数据库主键
      */
-    private String id;
+     String id;
     /**
      * 模型名称
      */
-    private String name;
+     String name;
     /**
      * 业务定义
      */
-    private String code;
+     String code;
     /**
      * 分类ID
      */
-    private String categoryId;
+     String categoryId;
     /**
      * 是否发布 0：未发布，1：已发布
      */
-    private PublishState isPublished;
+     PublishState isPublished;
     /**
      * 第一次发布时间
      */
-    private String firstPublishTime;
+     String firstPublishTime;
     /**
      * 创建用户
      */
-    private String createUser;
+     String createUser;
     /**
      * 创建时间
      */
-    private String createTime;
+     String createTime;
     /**
      * 创建部门
      */
-    private String createDept;
+     String createDept;
     /**
      * 修改用户
      */
-    private String modifyUser;
+     String modifyUser;
     /**
      * 修改时间
      */
-    private String modifyTime;
+     String modifyTime;
     /**
      * 修改部门
      */
-    private String modifyDept;
+     String modifyDept;
     /**
      * 数据库ID
      */
-    private String dataBaseId;
+     String dataBaseId;
     /**
      * 数据库schema
      */
-    private String databaseSchema;
+     String databaseSchema;
     /**
      * 创建模式
      */
-    private CreateMode createMode;
+     CreateMode createMode;
     /**
      * 管理内容范围
      */
-    private ManageContentScope manageContentScope;
+     ManageContentScope manageContentScope;
     /**
      * 是否管理版本
      */
-    private WhetherValue isManageVersion;
+     WhetherValue isManageVersion;
     /**
      * 版本号
      */
-    private String version;
+     String version;
     /**
      * 模型状态--版本状态
      */
-    private ModelVersionStatus status;
+     ModelVersionStatus status;
     /**
      * 编辑状态下的表名称
      */
-    private String editingStatusTableName;
+     String editingStatusTableName;
     /**
      * 发布状态下的表名称
      */
-    private String publishedStatusTableName;
+     String publishedStatusTableName;
     /**
      * 发布时间
      */
-    private String publishTime;
+     String publishTime;
     /**
      * 是否最大版本
      */
-    private WhetherValue isMaxVersion;
+     WhetherValue isMaxVersion;
     /**
      * 密级
      */
-    private String secretsLevel;
+     String secretsLevel;
     /**
      * 字段
      */
-    private Field[] fields;
+     Field[] fields;
     /**
      * 模型信息
      */
-    private String modelInfo;
+     String modelInfo;
 
     /**
      * 级别编码，为父分类的LEVEL_CODE+自己所处层级的六位编号，如父分类为000001，
      * 自己为父分类下的第三个子分类，则自己的LEVEL_CODE为000001000003
      **/
-    private String levelCode;
+     String levelCode;
 }

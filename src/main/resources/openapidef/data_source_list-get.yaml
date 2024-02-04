@@ -56,6 +56,39 @@ paths:
                   message:
                     type: string
                     description: 错误信息
+  /v1/ds/get:
+    get:
+      summary: 查询单源
+      parameters:
+        - name: userId
+          in: query
+          description: 用户登录名 pf_org_user 的 USER_ID
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: query
+          description: 数据源ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '400':
+          description: 查询失败
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 错误信息
 components:
   schemas:
     BaseDataSource:

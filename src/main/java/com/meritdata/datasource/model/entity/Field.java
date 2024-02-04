@@ -14,78 +14,78 @@ public class Field {
     /**
      * 字段ID
      */
-    private String id;
+     String id;
     /**
      * 业务名称
      */
-    private String businessName;
+     String businessName;
     /**
      * 字段名称
      */
-    private String fieldName;
+     String fieldName;
     /**
      * 字段类型
      */
-    private String dataType;
+     String dataType;
     /**
      * 字段长度
      */
-    private String length;
+     String length;
     /**
      * 排序编号
      */
-    private String sortNumber;
+     String sortNumber;
     /**
      * 修改状态 0:新增  1:更新
      */
-    private ModifyStatus modifyStatus;
+     ModifyStatus modifyStatus;
     /**
      * 最后一次生效的属性名称
      */
-    private String publishName;
+     String publishName;
     /**
      * 修改用户
      */
-    private String modifyUser;
+     String modifyUser;
     /**
      * 修改时间
      */
-    private String modifyTime;
+     String modifyTime;
     /**
      * 修改部门
      */
-    private String modifyDept;
+     String modifyDept;
     /**
      * 使用的字符类型
      */
-    private UsingCharacterTypes usingCharacterType;
+     UsingCharacterTypes usingCharacterType;
     /**
      * 关联Model ID
      */
-    private String modelVersionId;
+     String modelVersionId;
     /**
      * 字段主ID
      */
-    private String modelFieldId;
+     String modelFieldId;
     /**
      * 是否唯一
      */
-    private WhetherValue isUnique;
-    private FieldStatus status;
+     WhetherValue isUnique;
+     FieldStatus status;
 
     /**
      * 枚举值：1：受无符号限制，0：没有无符号限制，其他-1
      */
-    private SignRestriction unsigned;
+     SignRestriction unsigned;
     /**
      * 精度
      */
-    private int definition;
+     int definition;
 
 
     /**
      * 字段类型关联信息
      */
-    private FieldDataType fieldDataType;
+     FieldDataType fieldDataType;
 
 }

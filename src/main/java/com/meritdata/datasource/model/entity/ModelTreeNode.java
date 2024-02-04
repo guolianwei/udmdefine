@@ -4,12 +4,12 @@ public class ModelTreeNode {
     /**
      * 节点属性
      */
-    private TreeAttributes attributes;
+     TreeAttributes attributes;
 
     /**
      * 基础模型
      */
-    private BaseModel baseModel;
+     BaseModel baseModel;
 
-    private ModelTreeNode[] childrens;
+     ModelTreeNode[] childrens;
 }

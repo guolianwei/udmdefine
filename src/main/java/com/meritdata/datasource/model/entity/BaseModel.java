@@ -1,5 +1,7 @@
 package com.meritdata.datasource.model.entity;
 
+import com.meritdata.datasource.model.enums.ModelVersionStatus;
+
 /**
  * @PackageName: com.meritdata.datasource.model.entity
  * @ClassName: BaseModel
@@ -11,25 +13,25 @@ public class BaseModel {
     /**
      * 模型id
      */
-    private String id;
+     String id;
     /**
      *  模型编码
      */
-    private String code;
+     String code;
     /**
      * 模型名称
      */
-    private String name;
+     String name;
     /**
      * 模型状态
      */
-    private String status;
+    ModelVersionStatus status;
     /**
      * 表名
      */
-    private String tableName;
+     String tableName;
     /**
      * 模型分类id
      */
-    private String categoryId;
+     String categoryId;
 }

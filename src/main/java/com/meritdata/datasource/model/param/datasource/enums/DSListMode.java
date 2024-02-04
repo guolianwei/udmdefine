@@ -1,4 +1,4 @@
-package com.meritdata.datasource.model.param.enums;
+package com.meritdata.datasource.model.param.datasource.enums;
 
 /**
  * 返回数据源列表时的模式参数，两种模式：<br/>
@@ -9,8 +9,8 @@ public enum DSListMode {
     SIMPLE("simple", "简单模式, 返回基础数据源模型 BaseDataSource模型"),
     ALL("all", "全量模式,返回数据源对象 DataSource模型");
 
-    private final String code;
-    private final String desc;
+     final String code;
+     final String desc;
 
     DSListMode(String code, String desc) {
         this.code = code;

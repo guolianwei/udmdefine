@@ -19,8 +19,8 @@ public enum ManageContentScope {
     ONLY_MANAGE_DATA(2, "仅管理数据"),
     MANAGE_TABLE_STRUCTURE_AND_DATA(3, "管理表结构和数据");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     ManageContentScope(int code, String desc) {
         this.code = code;

@@ -16,8 +16,8 @@ public enum PublishState {
      *  已发布
      */
     PUBLISHED(1, "已发布");
-    private final Integer code;
-    private final String desc;
+     final Integer code;
+     final String desc;
 
     PublishState(Integer code, String desc) {
         this.code = code;

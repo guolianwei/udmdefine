@@ -17,8 +17,8 @@ public enum UsingCharacterTypes {
     BYTE(1, "字节"),
     OTHER(2, "其他");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     UsingCharacterTypes(int code, String desc) {
         this.code = code;

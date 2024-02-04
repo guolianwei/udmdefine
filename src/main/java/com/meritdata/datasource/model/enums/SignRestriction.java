@@ -5,8 +5,8 @@ public enum SignRestriction {
     YES(1, "有"),
     OTHER(-1, " 其他");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     SignRestriction(int code, String desc) {
         this.code = code;

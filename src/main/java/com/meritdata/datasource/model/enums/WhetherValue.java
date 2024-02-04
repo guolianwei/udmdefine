@@ -4,8 +4,8 @@ public enum WhetherValue {
     NO(0, "否"),
     YES(1, "是");
 
-    private final int code;
-    private final String desc;
+     final int code;
+     final String desc;
 
     WhetherValue(int code, String desc) {
         this.code = code;
