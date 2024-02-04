@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  title: 数据源管理 API
+  version: 1.0.0
+paths:
+  /v1/ds/list:
+    get:
+      summary: 获取数据源列表
+      parameters:
+        - name: userId
+          in: query
+          description: 用户登录名 pf_org_user 的 USER_ID
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: 数据源类型
+          required: false
+          schema:
+            type: string
+        - name: mode
+          in: query
+          description: 列表模式
+          required: false
+          schema:
+            type: string
+            enum: [simple, all]
+        - name: transform
+          in: query
+          description: 数据源变换目标
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功返回数据源列表
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/BaseDataSource'
+                    - $ref: '#/components/schemas/DataSource'
+        '400':
+          description: 参数错误
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: 错误码
+                  message:
+                    type: string
+                    description: 错误信息
+components:
+  schemas:
+    BaseDataSource:
+      type: object
+      description: 简单数据源模型
+      properties:
+        id:
+          type: string
+          description: 数据源id
+        code:
+          type: string
+          description: 数据源编码
+        name:
+          type: string
+          description: 数据源名称
+    DataSource:
+      type: object
+      description: 数据源对象
+      properties:
+        id:
+          type: string
+          description: 数据源id
+        code:
+          type: string
+          description: 数据源编码
+        name:
+          type: string
+          description: 数据源名称
+        type:
+          type: string
+          description: 数据源类型
+        url:
+          type: string
+          description: 数据源地址
+        username:
+          type: string
+          description: 数据源用户名
+        drowssap:
+          type: string
+          description: 数据源密码
+        toSchema:
+          type: string
+          description: 操作的对象信息
+        udfAttrs:
+          type: array
+          description: 连接信息的自定义属性
+          items:
+            type: string
