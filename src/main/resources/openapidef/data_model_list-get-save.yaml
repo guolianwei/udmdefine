@@ -3,6 +3,109 @@ info:
   title: 数据源列表接口
   version: 1.0.0
 paths:
+  /v1/model/save:
+    post:
+      summary: 保存数据模型
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Model'
+      responses:
+        '200':
+          description: 操作成功
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: 参数错误
+        '500':
+          description: 服务器错误
+  /v1/model/update:
+    post:
+      summary: 更新数据模型
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Model'
+      responses:
+        '200':
+          description: 操作成功
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: 参数错误
+        '500':
+          description: 服务器错误
+  /v1/model/category/update:
+    post:
+      summary: 更新模型分类
+      parameters:
+        - name: loginUserId
+          in: query
+          description: 登录用户ID
+          required: true
+          schema:
+            type: string
+        - name: modelId
+          in: query
+          description: 模型ID
+          required: false
+          schema:
+            type: string
+        - name: categoryId
+          in: query
+          description: 模型分类ID
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 操作成功
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: 参数错误
+        '500':
+          description: 服务器错误
+  /v1/model/delete:
+    post:
+      summary: 更新模型分类
+      parameters:
+        - name: loginUserId
+          in: query
+          description: 登录用户ID
+          required: true
+          schema:
+            type: string
+        - name: modeIds
+          in: query
+          description: 返回模式
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: false
+      responses:
+        '200':
+          description: 操作成功
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: 参数错误
+        '500':
+          description: 服务器错误
   /v1/model/list:
     get:
       summary: 获取数据源列表
@@ -124,283 +227,227 @@ components:
         categoryId:
           type: string
           description: 类别ID
-    Field:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 字段ID
-        businessName:
-          type: string
-          description: 业务名称
-        fieldName:
-          type: string
-          description: 字段名称
-        dataType:
-          type: string
-          description: 数据类型
-        length:
-          type: string
-          description: 长度
-        sortNumber:
-          type: string
-          description: 排序号
-        modifyStatus:
-          $ref: '#/components/schemas/ModifyStatus'
-          description: 修改状态
-        publishName:
-          type: string
-          description: 发布名称
-        modifyUser:
-          type: string
-          description: 修改用户
-        modifyTime:
-          type: string
-          description: 修改时间
-        modifyDept:
-          type: string
-          description: 修改部门
-        usingCharacterType:
-          $ref: '#/components/schemas/UsingCharacterTypes'
-          description: 使用字符类型
-        modelVersionId:
-          type: string
-          description: 模型版本ID
-        modelFieldId:
-          type: string
-          description: 模型字段ID
-        isUnique:
-          $ref: '#/components/schemas/WhetherValue'
-          description: 是否唯一
-        status:
-          $ref: '#/components/schemas/FieldStatus'
-          description: 字段状态
-        unsigned:
-          $ref: '#/components/schemas/SignRestriction'
-          description: 无符号限制
-        definition:
-          type: integer
-          description: 精度
-        fieldDataType:
-          $ref: '#/components/schemas/FieldDataType'
-          description: 字段数据类型
-    FieldDataType:
-      type: object
-      properties:
-        id:
-          type: string
-          description: 字段数据类型ID
-        databaseType:
-          type: string
-          description: 数据库类型
-        dataType:
-          type: string
-          description: 数据类型
-        needLength:
-          $ref: '#/components/schemas/WhetherValue'
-          description: 是否需要长度
-        defaultLength:
-          type: integer
-          format: int64
-          description: 默认长度
-        maxLength:
-          type: integer
-          description: 最大长度
-        minLength:
-          type: integer
-          description: 最小长度
-        needCharUsed:
-          $ref: '#/components/schemas/WhetherValue'
-          description: 是否需要字符使用
-        defaultCharUsed:
-          type: string
-          description: 默认字符使用
-        needDefinition:
-          type: integer
-          description: 是否需要精度
-        defaultDefinition:
-          type: integer
-          description: 默认精度
-        maxDefinition:
-          type: integer
-          description: 最大精度
-        minDefinition:
-          type: integer
-          description: 最小精度
-        needIsUnsigned:
-          $ref: '#/components/schemas/WhetherValue'
-          description: 是否需要无符号
-        busiType:
-          type: string
-          description: 业务类型
-        dateFormat:
-          type: string
-          description: 日期格式
-        supportVersion:
-          type: string
-          description: 支持版本
-        deprecatedVersion:
-          type: string
-          description: 废弃版本
-        versionDes:
-          $ref: '#/components/schemas/VersionDes'
-          description: 版本描述
-        replaceDataType:
-          type: string
-          description: 替换数据类型
-        extract:
-          $ref: '#/components/schemas/WhetherValue'
-          description: 是否可抽取
-        create:
-          $ref: '#/components/schemas/TrietherValue'
-          description: 是否可创建
-        allowedSetUnique:
-          $ref: '#/components/schemas/WhetherValue'
-          description: 是否允许设置唯一
     Model:
       type: object
       properties:
         id:
           type: string
-          description: 模型ID
         name:
           type: string
-          description: 模型名称
         code:
           type: string
-          description: 模型编码
         categoryId:
           type: string
-          description: 类别ID
         isPublished:
           $ref: '#/components/schemas/PublishState'
-          description: 发布状态
         firstPublishTime:
           type: string
-          description: 首次发布时间
         createUser:
           type: string
-          description: 创建用户
         createTime:
           type: string
-          description: 创建时间
         createDept:
           type: string
-          description: 创建部门
         modifyUser:
           type: string
-          description: 修改用户
         modifyTime:
           type: string
-          description: 修改时间
         modifyDept:
           type: string
-          description: 修改部门
         dataBaseId:
           type: string
-          description: 数据库ID
         databaseSchema:
           type: string
-          description: 数据库模式
         createMode:
           $ref: '#/components/schemas/CreateMode'
-          description: 创建模式
         manageContentScope:
           $ref: '#/components/schemas/ManageContentScope'
-          description: 管理内容范围
         isManageVersion:
           $ref: '#/components/schemas/WhetherValue'
-          description: 是否管理版本
         version:
           type: string
-          description: 版本号
         status:
           $ref: '#/components/schemas/ModelVersionStatus'
-          description: 版本状态
         editingStatusTableName:
           type: string
-          description: 编辑中状态表名
         publishedStatusTableName:
           type: string
-          description: 已发布状态表名
         publishTime:
           type: string
-          description: 发布时间
         isMaxVersion:
           $ref: '#/components/schemas/WhetherValue'
-          description: 是否最大版本
         secretsLevel:
           type: string
-          description: 密级
         fields:
           type: array
           items:
             $ref: '#/components/schemas/Field'
-          description: 字段列表
         modelInfo:
           type: string
-          description: 模型信息
         levelCode:
           type: string
-          description: 层级编码
-    PublishState:
-      type: integer
-      enum:
-        - 0
-        - 1
-      description: 发布状态枚举
-    CreateMode:
-      type: integer
-      enum:
-        - 0
-        - 1
-        - 2
-      description: 创建模式枚举
     ManageContentScope:
       type: integer
-      enum:
-        - 0
-        - 1
-        - 2
-        - 3
-      description: 管理内容范围枚举
+      enum: [0, 1, 2, 3]
+      description: |
+        0 - 仅查询数据
+        1 - 仅管理表结构
+        2 - 仅管理数据
+        3 - 管理表结构和数据
+    PublishState:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - 未发布
+        1 - 已发布
+    CreateMode:
+      type: integer
+      enum: [0, 1, 2]
+      description: |
+        0 - 新建
+        1 - 抽取
+        2 - ETL输出
     ModelVersionStatus:
       type: integer
-      enum:
-        - 0
-        - 1
-        - 2
-        - 3
-        - 4
-      description: 模型版本状态枚举
+      enum: [0, 1, 2, 3, 4]
+      description: |
+        0 - 停用
+        1 - 生效
+        2 - 编辑中
+        3 - 审核中
+        4 - 历史
+    Field:
+      type: object
+      properties:
+        id:
+          type: string
+        businessName:
+          type: string
+        fieldName:
+          type: string
+        dataType:
+          type: string
+        length:
+          type: string
+        sortNumber:
+          type: string
+        modifyStatus:
+          $ref: '#/components/schemas/ModifyStatus'
+        publishName:
+          type: string
+        modifyUser:
+          type: string
+        modifyTime:
+          type: string
+        modifyDept:
+          type: string
+        usingCharacterType:
+          $ref: '#/components/schemas/UsingCharacterTypes'
+        modelVersionId:
+          type: string
+        modelFieldId:
+          type: string
+        isUnique:
+          $ref: '#/components/schemas/WhetherValue'
+        status:
+          $ref: '#/components/schemas/FieldStatus'
+        unsigned:
+          $ref: '#/components/schemas/SignRestriction'
+        definition:
+          type: integer
+        fieldDataType:
+          $ref: '#/components/schemas/FieldDataType'
     ModifyStatus:
       type: integer
-      enum:
-        - 0
-        - 1
-      description: 修改状态枚举
+      enum: [0, 1]
+      description: |
+        0 - 新增
+        1 - 更新
     FieldStatus:
       type: integer
-      enum:
-        - 0
-        - 1
-      description: 字段状态枚举
+      enum: [0, 1]
+      description: |
+        0 - 停用
+        1 - 启用
     SignRestriction:
       type: integer
-      enum:
-        - 0
-        - 1
-        - -1
-      description: 无符号限制枚举
+      enum: [0, 1, -1]
+      description: |
+        0 - 无
+        1 - 有
+        -1 - 其他
+    FieldDataType:
+      type: object
+      properties:
+        id:
+          type: string
+        databaseType:
+          type: string
+        dataType:
+          type: string
+        needLength:
+          $ref: '#/components/schemas/WhetherValue'
+        defaultLength:
+          type: integer
+        maxLength:
+          type: integer
+        minLength:
+          type: integer
+        needCharUsed:
+          $ref: '#/components/schemas/WhetherValue'
+        defaultCharUsed:
+          type: string
+        needDefinition:
+          type: integer
+        defaultDefinition:
+          type: integer
+        maxDefinition:
+          type: integer
+        minDefinition:
+          type: integer
+        needIsUnsigned:
+          $ref: '#/components/schemas/WhetherValue'
+        busiType:
+          type: string
+        dateFormat:
+          type: string
+        supportVersion:
+          type: string
+        deprecatedVersion:
+          type: string
+        versionDes:
+          $ref: '#/components/schemas/VersionDes'
+        replaceDataType:
+          type: string
+        extract:
+          $ref: '#/components/schemas/WhetherValue'
+        create:
+          $ref: '#/components/schemas/TrietherValue'
+        allowedSetUnique:
+          $ref: '#/components/schemas/WhetherValue'
     WhetherValue:
       type: integer
-      enum:
-        - 0
-        - 1
-      description: 是否值枚举
+      enum: [0, 1]
+      description: |
+        0 - 否
+        1 - 是
     VersionDes:
       type: string
-      enum:
-        - L
-        - R
-      description: 版本定义
+      enum: ["L", "R"]
+      description: |
+        L - list
+        R - range
+    UsingCharacterTypes:
+      type: integer
+      enum: [0, 1, 2]
+      description: |
+        0 - 字符
+        1 - 字节
+        2 - 其他
+    TrietherValue:
+      type: integer
+      enum: [0, 1, -1]
+      description: |
+        0 - 否 | 无
+        1 - 是 | 有
+        -1 - 未定义 | 其他

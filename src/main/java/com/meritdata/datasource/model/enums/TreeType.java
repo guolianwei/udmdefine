@@ -1,14 +1,13 @@
 package com.meritdata.datasource.model.enums;
 
-public enum TreeGroupType {
-    ORG(0, "org"),
-    DEPT(1, "dept"),
-    GROUP(2, "group");
+public enum TreeType {
+    CATEGORY(0, "category"),
+    MODEL(1, "model");
 
      final int code;
      final String desc;
 
-    TreeGroupType(int code, String desc) {
+    TreeType(int code, String desc) {
         this.code = code;
         this.desc = desc;
     }

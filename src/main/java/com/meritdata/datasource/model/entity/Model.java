@@ -19,7 +19,7 @@ public class Model {
      */
      String name;
     /**
-     * 业务定义
+     * 编码
      */
      String code;
     /**

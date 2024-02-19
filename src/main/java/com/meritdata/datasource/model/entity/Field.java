@@ -87,5 +87,12 @@ public class Field {
      * 字段类型关联信息
      */
      FieldDataType fieldDataType;
+     /**
+      * Hive分区分桶
+      * */
+
+     /**
+      * 字段是否加密
+      * */
 
 }

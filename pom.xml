@@ -13,4 +13,39 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <!-- Plugin that provides API-first development using openapi-generator
+                    to generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition
+                    file -->
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/swagger/马上开课openapi3.0文档.yaml</inputSpec>
+                            <generatorName>spring</generatorName>
+                            <apiPackage>com.example.openapigenerator.rest</apiPackage>
+                            <modelPackage>com.example.openapigenerator.rest.dto</modelPackage>
+                            <output>${project.basedir}</output>
+                            <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                            <configOptions>
+                                <delegatePattern>true</delegatePattern>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

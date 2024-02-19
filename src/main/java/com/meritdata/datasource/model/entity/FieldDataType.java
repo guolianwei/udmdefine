@@ -31,7 +31,7 @@ public class FieldDataType {
     /**
      * 默认长度
      **/
-     Long defaultLength;
+    Integer defaultLength;
     /**
      * 最大长度
      */
@@ -98,7 +98,6 @@ public class FieldDataType {
      * 开始支持版本为空时，表示仅受开始废弃版本的限制。
      * 开始支持版本、开始废弃版本均为空时，表示数据库各版本均支持
      **/
-
      String supportVersion;
     /**
      * 开始废弃版本。
