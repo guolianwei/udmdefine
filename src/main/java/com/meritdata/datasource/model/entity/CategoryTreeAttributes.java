@@ -1,7 +1,5 @@
 package com.meritdata.datasource.model.entity;
 
-import com.meritdata.datasource.model.enums.WhetherValue;
-
 import java.util.Date;
 
 class CategoryTreeAttributes {

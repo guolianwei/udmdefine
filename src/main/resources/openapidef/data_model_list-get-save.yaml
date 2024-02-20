@@ -47,12 +47,6 @@ paths:
     post:
       summary: 更新模型分类
       parameters:
-        - name: loginUserId
-          in: query
-          description: 登录用户ID
-          required: true
-          schema:
-            type: string
         - name: modelId
           in: query
           description: 模型ID
@@ -80,12 +74,6 @@ paths:
     post:
       summary: 更新模型分类
       parameters:
-        - name: loginUserId
-          in: query
-          description: 登录用户ID
-          required: true
-          schema:
-            type: string
         - name: modeIds
           in: query
           description: 返回模式
@@ -110,12 +98,6 @@ paths:
     get:
       summary: 获取数据源列表
       parameters:
-        - name: loginUserId
-          in: query
-          description: 登录用户ID
-          required: true
-          schema:
-            type: string
         - name: dsType
           in: query
           description: 数据源类型
@@ -155,16 +137,38 @@ paths:
           description: 未授权访问
         '500':
           description: 服务器内部错误
+  /v1/model/sql/get:
+    get:
+      summary: 根据模型ID查询Sql字符串
+      parameters:
+        - name: modelId
+          in: query
+          description: 模型ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                type: string
+
+        '400':
+          description: 查询失败
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 错误信息
   /v1/model/get:
     get:
       summary: 查询单个模型，1.字段列表：带分页；2.模型及字段信息：全部模型属性;3.模型基本信息：一部分模型信息。
       parameters:
-        - name: loginUserId
-          in: query
-          description: 用户登录名 pf_org_user 的 USER_ID
-          required: true
-          schema:
-            type: string
         - name: modelId
           in: query
           description: 模型ID
@@ -408,7 +412,7 @@ components:
         needIsUnsigned:
           $ref: '#/components/schemas/WhetherValue'
         busiType:
-          type: string
+          $ref: '#/components/schemas/BusiType'
         dateFormat:
           type: string
         supportVersion:
@@ -420,7 +424,7 @@ components:
         replaceDataType:
           type: string
         extract:
-          $ref: '#/components/schemas/WhetherValue'
+          $ref: '#/components/schemas/TrietherValue'
         create:
           $ref: '#/components/schemas/TrietherValue'
         allowedSetUnique:
@@ -437,6 +441,14 @@ components:
       description: |
         L - list
         R - range
+    BusiType:
+      type: string
+      enum: ["STRING", "NUMBER","DATE","CLOB"]
+      description: |
+        STRING - STRING字符型
+        NUMBER - 数值型
+        DATE - 日期型
+        CLOB - 大文本
     UsingCharacterTypes:
       type: integer
       enum: [0, 1, 2]

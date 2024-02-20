@@ -38,9 +38,9 @@ public class DataSource {
      String drowssap;
     /**
      * 操作的对象信息
-     * @TODO:确认类型和是否多值
+     * 多个值使用逗号分割
      */
-     String toSchema[];
+     String toSchema;
     /**
      * 连接信息的自定义属性
      */

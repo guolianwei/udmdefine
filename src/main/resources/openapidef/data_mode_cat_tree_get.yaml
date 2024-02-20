@@ -1,0 +1,221 @@
+openapi: 3.0.0
+info:
+  title: 获取分类模型树
+  version: 1.0.0
+paths:
+  /v1/model/tree:
+    get:
+      summary: 获取分类模型树
+      parameters:
+        - name: dsType
+          in: query
+          description: 数据源类型
+          required: true
+          schema:
+            type: string
+        - name: categoryName
+          in: query
+          description: 分类名称
+          required: false
+          schema:
+            type: string
+        - name: modelName
+          in: query
+          description: 模型名称
+          required: false
+          schema:
+            type: string
+        - name: categoryId
+          in: query
+          description: 分类ID
+          required: false
+          schema:
+            type: string
+        - name: wetherRecur
+          in: query
+          description: 是否递归
+          required: false
+          schema:
+            type: boolean
+        - name: pagination
+          in: query
+          description: 分页参数
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功返回分类模型树
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TreeNode'
+        '400':
+          description: 参数错误
+        '500':
+          description: 服务器错误
+  /v1/model/category/tree:
+    get:
+      summary: 获取分类树的数据
+      parameters:
+        - name: dsType
+          in: query
+          description: 数据源类型
+          required: true
+          schema:
+            type: string
+        - name: categoryName
+          in: query
+          description: 分类名称
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功返回分类树的数据
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TreeNode'
+        '400':
+          description: 请求参数错误
+        '500':
+          description: 服务器内部错误
+components:
+  schemas:
+    TreeNode:
+      type: object
+      properties:
+        leaf:
+          $ref: '#/components/schemas/WhetherValue'
+        state:
+          $ref: '#/components/schemas/TreeExpandState'
+        checked:
+          type: boolean
+        text:
+          type: string
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/TreeType'
+        modelTreeAttributes:
+          $ref: '#/components/schemas/ModelTreeAttributes'
+        categoryTreeAttributes:
+          $ref: '#/components/schemas/CategoryTreeAttributes'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/TreeNode'
+    WhetherValue:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - 否
+        1 - 是
+    TreeExpandState:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - 关闭
+        1 - 展开
+    TreeType:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - CATEGORY
+        1 - MODEL
+    ModelTreeAttributes:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        modelInfo:
+          type: string
+        type:
+          type: string
+        published:
+          $ref: '#/components/schemas/PublishState'
+        databaseId:
+          type: string
+        databaseSchema:
+          type: string
+        createMode:
+          $ref: '#/components/schemas/CreateMode'
+        tableOrView:
+          $ref: '#/components/schemas/TableOrView'
+        manageContent:
+          type: integer
+        manageVersion:
+          type: integer
+        version:
+          type: integer
+        status:
+          $ref: '#/components/schemas/ModelStatus'
+        tableName:
+          type: string
+        publishTableName:
+          type: string
+        publishTime:
+          type: string
+          format: date-time
+        maxVersion:
+          type: integer
+    CategoryTreeAttributes:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        sortNumber:
+          type: integer
+        remark:
+          type: string
+        parentId:
+          type: string
+        levelCode:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        createUser:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        createDept:
+          type: string
+    PublishState:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - 已经发布
+        1 - 未发布
+    CreateMode:
+      type: integer
+      enum: [0, 1, 2]
+      description: |
+        0 - 新建
+        1 - 抽取
+        2 - ETL输出
+    TableOrView:
+      type: string
+      enum: ["T", "V"]
+      description: |
+        T - 表格
+        V - 视图
+    ModelStatus:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - 编辑中
+        1 - 已经发布

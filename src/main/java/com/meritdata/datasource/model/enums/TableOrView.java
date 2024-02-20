@@ -3,8 +3,8 @@ package com.meritdata.datasource.model.enums;
 import java.util.Arrays;
 
 public enum TableOrView {
-    STRING("T", "表格"),
-    NUMBER("V", "视图");
+    TABLE("T", "表格"),
+    VIEW("V", "视图");
 
     final String code;
     final String desc;

@@ -7,12 +7,6 @@ paths:
     get:
       summary: 获取数据源列表
       parameters:
-        - name: userId
-          in: query
-          description: 用户登录名 pf_org_user 的 USER_ID
-          required: true
-          schema:
-            type: string
         - name: type
           in: query
           description: 数据源类型
@@ -60,12 +54,6 @@ paths:
     get:
       summary: 查询单源
       parameters:
-        - name: userId
-          in: query
-          description: 用户登录名 pf_org_user 的 USER_ID
-          required: true
-          schema:
-            type: string
         - name: id
           in: query
           description: 数据源ID

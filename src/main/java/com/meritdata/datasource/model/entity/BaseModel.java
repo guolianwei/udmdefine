@@ -20,9 +20,9 @@ public class BaseModel {
      */
     ModelVersionStatus status;
     /**
-     * 表名
+     * 编辑中状态表名
      */
-    String tableName;
+    String editingStatusTableName;
     /**
      * 模型分类id
      */

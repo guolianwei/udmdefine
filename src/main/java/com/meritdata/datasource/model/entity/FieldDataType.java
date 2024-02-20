@@ -115,14 +115,16 @@ public class FieldDataType {
      * 替代数据类型。表示在不支持版本中的替代数据类型
      **/
      String replaceDataType;
+
     /**
      * 是否抽取。
      * 1——是，支持该类型的抽取
      * 0——否，暂不支持抽取该类型
-     * null——抽取类型中无该类型
+     * -1——无,抽取类型中无该类型
      */
 
-     WhetherValue extract;
+    TrietherValue extract;
+
     /**
      * 是否创建。
      * 1——是，支持包含该类型的模型创建
