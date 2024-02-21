@@ -1,9 +1,24 @@
 openapi: 3.0.0
 info:
-  title: 数据源列表接口
+  title: 统一数据模型接口
   version: 1.0.0
+servers:
+  - url: https://meritdata.com.cn:{port}/{basePath}
+    description: The production API server
+    variables:
+      port:
+        enum:
+          - '8443'
+          - '443'
+        default: '8443'
+      basePath:
+        # open meaning there is the opportunity to use special base paths as assigned by the provider, default is `v2`
+        default: v1
+tags:
+  - name: unidatamodel
+    description: Operations with universal data model.
 paths:
-  /v1/model/save:
+  /unidatamodel/model/save:
     post:
       summary: 保存数据模型
       requestBody:
@@ -23,7 +38,7 @@ paths:
           description: 参数错误
         '500':
           description: 服务器错误
-  /v1/model/update:
+  /unidatamodel/model/update:
     post:
       summary: 更新数据模型
       requestBody:
@@ -43,7 +58,7 @@ paths:
           description: 参数错误
         '500':
           description: 服务器错误
-  /v1/model/category/update:
+  /unidatamodel/model/category/update:
     post:
       summary: 更新模型分类
       parameters:
@@ -70,7 +85,7 @@ paths:
           description: 参数错误
         '500':
           description: 服务器错误
-  /v1/model/delete:
+  /unidatamodel/model/delete:
     post:
       summary: 更新模型分类
       parameters:
@@ -94,7 +109,7 @@ paths:
           description: 参数错误
         '500':
           description: 服务器错误
-  /v1/model/list:
+  /unidatamodel/model/list:
     get:
       summary: 获取数据源列表
       parameters:
@@ -137,7 +152,7 @@ paths:
           description: 未授权访问
         '500':
           description: 服务器内部错误
-  /v1/model/sql/get:
+  /unidatamodel/model/sql/get:
     get:
       summary: 根据模型ID查询Sql字符串
       parameters:
@@ -165,7 +180,7 @@ paths:
                   message:
                     type: string
                     description: 错误信息
-  /v1/model/get:
+  /unidatamodel/model/get:
     get:
       summary: 查询单个模型，1.字段列表：带分页；2.模型及字段信息：全部模型属性;3.模型基本信息：一部分模型信息。
       parameters:
@@ -208,6 +223,158 @@ paths:
                   message:
                     type: string
                     description: 错误信息
+  /unidatamodel/ds/list:
+    get:
+      summary: 获取数据源列表
+      parameters:
+        - name: type
+          in: query
+          description: 数据源类型
+          required: false
+          schema:
+            type: string
+        - name: mode
+          in: query
+          description: 列表模式
+          required: false
+          schema:
+            type: string
+            enum: [simple, all]
+        - name: transform
+          in: query
+          description: 数据源变换目标
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功返回数据源列表
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: '#/components/schemas/BaseDataSource'
+                    - $ref: '#/components/schemas/DataSource'
+        '400':
+          description: 参数错误
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: 错误码
+                  message:
+                    type: string
+                    description: 错误信息
+  /unidatamodel/ds/get:
+    get:
+      summary: 查询单源
+      parameters:
+        - name: id
+          in: query
+          description: 数据源ID
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataSource'
+        '400':
+          description: 查询失败
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: 错误信息
+  /unidatamodel/model/tree:
+    get:
+      summary: 获取分类模型树
+      parameters:
+        - name: dsType
+          in: query
+          description: 数据源类型
+          required: true
+          schema:
+            type: string
+        - name: categoryName
+          in: query
+          description: 分类名称
+          required: false
+          schema:
+            type: string
+        - name: modelName
+          in: query
+          description: 模型名称
+          required: false
+          schema:
+            type: string
+        - name: categoryId
+          in: query
+          description: 分类ID
+          required: false
+          schema:
+            type: string
+        - name: wetherRecur
+          in: query
+          description: 是否递归
+          required: false
+          schema:
+            type: boolean
+        - name: pagination
+          in: query
+          description: 分页参数
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功返回分类模型树
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TreeNode'
+        '400':
+          description: 参数错误
+        '500':
+          description: 服务器错误
+  /unidatamodel/model/category/tree:
+    get:
+      summary: 获取分类树的数据
+      parameters:
+        - name: dsType
+          in: query
+          description: 数据源类型
+          required: true
+          schema:
+            type: string
+        - name: categoryName
+          in: query
+          description: 分类名称
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 成功返回分类树的数据
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TreeNode'
+        '400':
+          description: 请求参数错误
+        '500':
+          description: 服务器内部错误
 components:
   schemas:
     BaseModel:
@@ -463,3 +630,166 @@ components:
         0 - 否 | 无
         1 - 是 | 有
         -1 - 未定义 | 其他
+    BaseDataSource:
+      type: object
+      description: 简单数据源模型
+      properties:
+        id:
+          type: string
+          description: 数据源id
+        code:
+          type: string
+          description: 数据源编码
+        name:
+          type: string
+          description: 数据源名称
+    DataSource:
+      type: object
+      description: 数据源对象
+      properties:
+        id:
+          type: string
+          description: 数据源id
+        code:
+          type: string
+          description: 数据源编码
+        name:
+          type: string
+          description: 数据源名称
+        type:
+          type: string
+          description: 数据源类型
+        url:
+          type: string
+          description: 数据源地址
+        username:
+          type: string
+          description: 数据源用户名
+        drowssap:
+          type: string
+          description: 数据源密码
+        toSchema:
+          type: string
+          description: 操作的对象信息
+        udfAttrs:
+          type: array
+          description: 连接信息的自定义属性
+          items:
+            type: string
+    TreeNode:
+      type: object
+      properties:
+        leaf:
+          $ref: '#/components/schemas/WhetherValue'
+        state:
+          $ref: '#/components/schemas/TreeExpandState'
+        checked:
+          type: boolean
+        text:
+          type: string
+        id:
+          type: string
+        type:
+          $ref: '#/components/schemas/TreeType'
+        modelTreeAttributes:
+          $ref: '#/components/schemas/ModelTreeAttributes'
+        categoryTreeAttributes:
+          $ref: '#/components/schemas/CategoryTreeAttributes'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/TreeNode'
+    TreeExpandState:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - 关闭
+        1 - 展开
+    TreeType:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - CATEGORY
+        1 - MODEL
+    ModelTreeAttributes:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        modelInfo:
+          type: string
+        type:
+          type: string
+        published:
+          $ref: '#/components/schemas/PublishState'
+        databaseId:
+          type: string
+        databaseSchema:
+          type: string
+        createMode:
+          $ref: '#/components/schemas/CreateMode'
+        tableOrView:
+          $ref: '#/components/schemas/TableOrView'
+        manageContent:
+          type: integer
+        manageVersion:
+          type: integer
+        version:
+          type: integer
+        status:
+          $ref: '#/components/schemas/ModelStatus'
+        tableName:
+          type: string
+        publishTableName:
+          type: string
+        publishTime:
+          type: string
+          format: date-time
+        maxVersion:
+          type: integer
+    CategoryTreeAttributes:
+      type: object
+      properties:
+        tenantId:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        code:
+          type: string
+        sortNumber:
+          type: integer
+        remark:
+          type: string
+        parentId:
+          type: string
+        levelCode:
+          type: string
+        status:
+          type: string
+        type:
+          type: string
+        createUser:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        createDept:
+          type: string
+    TableOrView:
+      type: string
+      enum: ["T", "V"]
+      description: |
+        T - 表格
+        V - 视图
+    ModelStatus:
+      type: integer
+      enum: [0, 1]
+      description: |
+        0 - 编辑中
+        1 - 已经发布

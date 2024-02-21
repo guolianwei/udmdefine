@@ -1,51 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.example</groupId>
-    <artifactId>plantuml_test</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.example</groupId>
+    <artifactId>swagger</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>swagger</name>
+    <description>Demo project for Spring Boot</description>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>1.8</java.version>
+        <spring-modulith-bom.version>0.5.1</spring-modulith-bom.version>
+        <jobrunr-spring-boot-starter.version>6.0.0</jobrunr-spring-boot-starter.version>
+        <jobrunr.version>3.1.1</jobrunr.version>
+        <awaitility.version>4.0.3</awaitility.version>
+        <openapi-generator.version>7.1.0</openapi-generator.version>
+        <spring.data.version>2.4.5</spring.data.version>
+        <jackson-databind-nullable.version>0.2.1</jackson-databind-nullable.version>
+        <reflections.version>0.10.2</reflections.version>
+        <jandex.version>2.4.3.Final</jandex.version>
+        <resilience4j-spring-boot2.version>2.0.2</resilience4j-spring-boot2.version>
+        <wiremock-jre8.version>2.34.0</wiremock-jre8.version>
+        <jandex-maven-plugin.version>1.2.3</jandex-maven-plugin.version>
+        <springdoc.version>1.7.0</springdoc.version>
+        <start-class>com.meritdata.openapi.api.OpenApiApplication</start-class>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator</artifactId>
+            <version>${openapi-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>${jackson-databind-nullable.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jobrunr</groupId>
+            <artifactId>jobrunr-spring-boot-2-starter</artifactId>
+            <version>${jobrunr-spring-boot-starter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.2.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.swagger</groupId>
+                    <artifactId>swagger-models</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
+        <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <!-- Plugin that provides API-first development using openapi-generator
-                    to generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition
-                    file -->
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>7.3.0</version>
                 <executions>
-                    <execution>
+                   <execution>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/src/swagger/马上开课openapi3.0文档.yaml</inputSpec>
+                            <inputSpec>
+                                ${project.basedir}/src/main/resources/openapidef/data_model_list-get-save.yaml
+                            </inputSpec>
                             <generatorName>spring</generatorName>
-                            <apiPackage>com.example.openapigenerator.rest</apiPackage>
-                            <modelPackage>com.example.openapigenerator.rest.dto</modelPackage>
-                            <output>${project.basedir}</output>
-                            <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+                            <apiPackage>com.meritdata.openapi.unidatamodel.api</apiPackage>
+                            <modelPackage>com.meritdata.openapi.unidatamodel.model</modelPackage>
+                            <supportingFilesToGenerate>
+                                ApiUtil.java
+                            </supportingFilesToGenerate>
                             <configOptions>
                                 <delegatePattern>true</delegatePattern>
                             </configOptions>
+                            <output>${project.basedir}</output>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
 
 </project>
+

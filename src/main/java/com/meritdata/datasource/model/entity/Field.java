@@ -1,7 +1,6 @@
 package com.meritdata.datasource.model.entity;
 
 import com.meritdata.datasource.model.enums.*;
-import sun.reflect.generics.tree.Tree;
 
 /**
  * @PackageName: com.meritdata.datasource.model.entity
